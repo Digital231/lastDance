@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useUserStore from "../stores/userStore";
 
 const AuthWrapper = ({ children }) => {
@@ -22,7 +22,6 @@ const AuthWrapper = ({ children }) => {
         }
       } catch (error) {
         console.error("Error parsing stored user data:", error);
-        // Optionally clear the invalid data
         localStorage.removeItem("user-storage");
       }
     }

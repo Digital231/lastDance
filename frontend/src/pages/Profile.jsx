@@ -34,6 +34,15 @@ const Profile = () => {
     e.preventDefault();
     setError("");
 
+    if (updateData.newPassword || updateData.confirmNewPassword) {
+      if (!updateData.currentPassword) {
+        return setError("Current password is required to set a new password.");
+      }
+      if (updateData.newPassword !== updateData.confirmNewPassword) {
+        return setError("New password and confirmation do not match.");
+      }
+    }
+
     try {
       const dataToUpdate = {};
       if (updateData.username !== user.username)

@@ -32,17 +32,14 @@ function UserDetails() {
 
   useEffect(() => {
     if (socket) {
-      socket.on("newNotification", ({ message, conversationId }) => {
+      socket.on("newNotification", () => {
         emitGlobalUpdate();
       });
 
-      socket.on(
-        "conversationStarted",
-        ({ conversationId, targetUserId, targetUsername, message }) => {
-          emitGlobalUpdate();
-          navigate(`/conversations/${conversationId}`);
-        }
-      );
+      socket.on("conversationStarted", ({ conversationId }) => {
+        emitGlobalUpdate();
+        navigate(`/conversations/${conversationId}`);
+      });
     }
 
     return () => {

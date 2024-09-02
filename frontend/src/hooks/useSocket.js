@@ -23,15 +23,11 @@ const useSocket = () => {
         console.log("Connected to socket");
       });
 
-      newSocket.on("receiveMessage", (data) => {});
-
       newSocket.on("globalUpdate", () => {
         setGlobalUpdateTrigger((prev) => prev + 1);
       });
 
-      newSocket.on("receiveGlobalMessage", (data) => {});
-
-      newSocket.on("newNotification", (notification) => {
+      newSocket.on("newNotification", () => {
         setHasNewNotifications(true);
         setGlobalUpdateTrigger((prev) => prev + 1);
       });

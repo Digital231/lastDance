@@ -20,18 +20,6 @@ router.post("/:messageId/like", authMiddleware, async (req, res) => {
     );
     res.json(message);
   } catch (error) {
-    res.status(500).json({ message: "Error liking/unliking message" });
-  }
-});
-
-router.post("/:messageId/like", authMiddleware, async (req, res) => {
-  try {
-    const message = await chatController.likeMessage(
-      req.params.messageId,
-      req.user.id
-    );
-    res.json(message);
-  } catch (error) {
     console.error("Error in like route:", error);
     res
       .status(500)

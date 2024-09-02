@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import useUserStore from "../stores/userStore";
 import useSocket from "../hooks/useSocket";
 import { format } from "date-fns";
+import axios from "axios";
 
 function Conversation() {
   const [messages, setMessages] = useState([]);

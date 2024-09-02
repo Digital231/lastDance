@@ -31,9 +31,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/conversations", conversationRoutes);
 app.use("/api/notifications", notificationRoutes);
 
-// Serve static files from the React frontend app
+// this is for hosting purpose
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
+// this is for hosting purpose
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });

@@ -59,7 +59,19 @@ router.put(
         user.avatar = req.body.avatar;
       }
 
-      if (req.body.currentPassword && req.body.newPassword) {
+      if (req.body.newPassword) {
+        if (!req.body.currentPassword) {
+          return res.status(400).json({
+            message: "Current password is required to set a new password.",
+          });
+        }
+
+        if (req.body.newPassword !== req.body.confirmNewPassword) {
+          return res.status(400).json({
+            message: "New password and confirmation do not match.",
+          });
+        }
+
         const isMatch = await user.comparePassword(req.body.currentPassword);
         if (!isMatch) {
           return res
@@ -87,4 +99,5 @@ router.put(
     }
   }
 );
+
 module.exports = router;
