@@ -110,11 +110,13 @@ const ChatRoom = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-[93vh] bg-base-200">
+    <div className="flex flex-col h-[93vh] bg-black">
       <div className="flex-grow overflow-hidden">
         <div className="container mx-auto px-4 py-8 h-full flex flex-col">
-          <h1 className="text-3xl font-bold text-center mb-6">Chat Room</h1>
-          <div className="bg-base-100 rounded-lg shadow-xl flex-grow flex flex-col overflow-hidden">
+          <h1 className="text-3xl font-bold text-center mb-6 text-white">
+            Chat Room
+          </h1>
+          <div className="bg-black rounded-lg shadow-xl flex-grow flex flex-col overflow-hidden">
             <div
               className="flex-grow overflow-y-auto p-4"
               ref={chatContainerRef}
@@ -142,20 +144,20 @@ const ChatRoom = () => {
                         />
                       </div>
                     </div>
-                    <div className="chat-header mb-1">
+                    <div className="chat-header mb-1 text-white">
                       {msg.sender.username}
                       <time className="text-xs opacity-50 ml-2">
                         {new Date(msg.createdAt).toLocaleString()}
                       </time>
                     </div>
-                    <div className="chat-bubble relative break-words">
+                    <div className="chat-bubble relative break-words bg-white text-black">
                       {msg.content}
                       <div
                         className={`absolute ${
                           msg.sender._id === user.id
                             ? "-left-5 -bottom-2"
                             : "-right-5 -bottom-2"
-                        } bg-base-100 rounded-full p-1 shadow-md`}
+                        } bg-black rounded-full p-1 shadow-md`}
                       >
                         <button
                           onClick={() => handleLike(msg._id)}
@@ -186,12 +188,12 @@ const ChatRoom = () => {
               )}
               <div ref={messagesEndRef} />
             </div>
-            <div className="p-4 bg-base-200">
+            <div className="p-4 bg-black">
               <div className="flex">
                 <input
                   type="text"
                   placeholder="Type your message..."
-                  className="input input-bordered flex-grow mr-2"
+                  className="input input-bordered flex-grow mr-2 bg-white text-black"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}

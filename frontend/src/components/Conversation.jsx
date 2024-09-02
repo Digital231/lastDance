@@ -178,10 +178,10 @@ function Conversation() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-base-200">
-      <div className="bg-base-100 p-4 shadow-md">
+    <div className="flex flex-col h-screen bg-black">
+      <div className="bg-black p-4 shadow-md">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">Conversation</h1>
+          <h1 className="text-2xl font-bold text-white">Conversation</h1>
 
           <div>
             <button
@@ -235,11 +235,11 @@ function Conversation() {
                     isCurrentUser ? "items-start" : "items-end"
                   }`}
                 >
-                  <span className="font-bold text-sm mb-1 text-gray-900">
+                  <span className="font-bold text-sm mb-1 text-white">
                     {message.sender.username}
                   </span>
                   <div
-                    className={`chat-bubble p-3 rounded-lg break-all bg-base-100 ${
+                    className={`chat-bubble p-3 rounded-lg break-words bg-white text-black ${
                       isCurrentUser ? "rounded-tl-none" : "rounded-tr-none"
                     }`}
                   >
@@ -256,13 +256,13 @@ function Conversation() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="bg-base-100 p-4">
+      <div className="bg-black p-4">
         <div className="flex">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            className="input input-bordered flex-grow placeholder-gray-500"
+            className="input input-bordered flex-grow placeholder-gray-500 bg-white text-black"
             placeholder="Type a message..."
             onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           />
