@@ -7,6 +7,7 @@ import { format } from "date-fns";
 
 function Conversation() {
   const [messages, setMessages] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
   const [newMessage, setNewMessage] = useState("");
   const [error, setError] = useState(null);
   const [participants, setParticipants] = useState([]);
@@ -183,19 +184,53 @@ function Conversation() {
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold text-white">Conversation</h1>
 
-          <div>
-            <button
-              className="btn btn-primary mr-2"
-              onClick={() => setShowParticipants(true)}
-            >
-              Show Participants
-            </button>
-            <button
-              className="btn btn-secondary"
-              onClick={() => setShowAddUsers(true)}
-            >
-              Add Users
-            </button>
+          <div className="relative">
+            <div className="lg:hidden">
+              {/* Hamburger button */}
+              <button
+                className="text-white"
+                onClick={() => setShowMenu(!showMenu)}
+              >
+                &#9776; {/* Hamburger icon */}
+              </button>
+            </div>
+            <div className="hidden lg:flex space-x-2">
+              <button
+                className="btn btn-primary"
+                onClick={() => setShowParticipants(true)}
+              >
+                Show Participants
+              </button>
+              <button
+                className="btn btn-secondary"
+                onClick={() => setShowAddUsers(true)}
+              >
+                Add Users
+              </button>
+            </div>
+            {/* Dropdown menu for mobile */}
+            {showMenu && (
+              <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-20 lg:hidden">
+                <button
+                  className="block w-full text-left px-4 py-2 text-sm text-black hover:bg-gray-200"
+                  onClick={() => {
+                    setShowParticipants(true);
+                    setShowMenu(false);
+                  }}
+                >
+                  Show Participants
+                </button>
+                <button
+                  className="block w-full text-left px-4 py-2 text-sm text-black hover:bg-gray-200"
+                  onClick={() => {
+                    setShowAddUsers(true);
+                    setShowMenu(false);
+                  }}
+                >
+                  Add Users
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -209,38 +244,35 @@ function Conversation() {
           const formattedDate = createdAt
             ? format(new Date(createdAt), "MMM d, yyyy h:mm a")
             : "Unknown date";
+
           return (
             <div
               key={message._id}
               className={`flex ${
-                isCurrentUser ? "justify-start" : "justify-end"
-              }`}
+                isCurrentUser ? "justify-end" : "justify-start"
+              } ms-15`} // <-- Added padding here to add a gap on the sides
             >
               <div
-                className={`flex max-w-[70%] ${
-                  isCurrentUser ? "flex-row" : "flex-row-reverse"
+                className={`flex items-start max-w-full ${
+                  isCurrentUser ? "flex-row-reverse" : "flex-row"
                 }`}
               >
-                <div className="flex items-center">
-                  <img
-                    src={message.sender.avatar}
-                    alt={`${message.sender.username}'s avatar`}
-                    className={`w-10 h-10 rounded-full ${
-                      isCurrentUser ? "mr-3" : "ml-3"
-                    }`}
-                  />
-                </div>
+                <img
+                  src={message.sender.avatar}
+                  alt={`${message.sender.username}'s avatar`}
+                  className="w-10 h-10 rounded-full flex-shrink-0"
+                />
                 <div
                   className={`flex flex-col ${
-                    isCurrentUser ? "items-start" : "items-end"
-                  }`}
+                    isCurrentUser ? "items-end" : "items-start"
+                  } ml-3 mr-3`}
                 >
                   <span className="font-bold text-sm mb-1 text-white">
                     {message.sender.username}
                   </span>
                   <div
-                    className={`chat-bubble p-3 rounded-lg break-words bg-white text-black ${
-                      isCurrentUser ? "rounded-tl-none" : "rounded-tr-none"
+                    className={`chat-bubble p-3 rounded-lg break-words bg-white text-black max-w-[calc(100vw-6rem)] ${
+                      isCurrentUser ? "rounded-tr-none" : "rounded-tl-none"
                     }`}
                   >
                     {message.content}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useUserStore from "../stores/userStore";
 import useSocket from "../hooks/useSocket";
@@ -15,6 +15,8 @@ const Toolbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { globalUpdateTrigger } = useSocket();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for the hamburger menu
 
   useEffect(() => {
     if (isLoggedIn && token) {
@@ -45,6 +47,10 @@ const Toolbar = () => {
   const handleLogout = () => {
     logout();
     navigate("/");
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev); // Toggle menu open/close state
   };
 
   const NavItems = ({ className = "" }) => (
@@ -95,7 +101,11 @@ const Toolbar = () => {
     <div className="navbar bg-base-100 shadow-lg">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost lg:hidden relative z-20"
+            onClick={toggleMenu} // Add onClick to toggle the menu
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -111,7 +121,9 @@ const Toolbar = () => {
               />
             </svg>
           </label>
-          <NavItems className="dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52" />
+          {isMenuOpen && ( // Conditionally render the dropdown menu
+            <NavItems className="dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-30 relative" />
+          )}
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           BoringApp
