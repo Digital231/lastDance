@@ -188,7 +188,7 @@ const ChatRoom = () => {
               )}
               <div ref={messagesEndRef} />
             </div>
-            <div className="p-4 bg-black">
+            <div className="p-4 bg-base-200">
               <div className="flex">
                 <input
                   type="text"

@@ -288,7 +288,7 @@ function Conversation() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="bg-black p-4">
+      <div className="bg-base-200 p-4">
         <div className="flex">
           <input
             type="text"
