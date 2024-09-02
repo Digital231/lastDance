@@ -16,7 +16,7 @@ function NotificationsPage() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/notifications",
+        `${import.meta.env.VITE_API_URL}/notifications`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -54,7 +54,7 @@ function NotificationsPage() {
   const handleDelete = async (notificationId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/notifications/${notificationId}`,
+        `${import.meta.env.VITE_API_URL}/notifications/${notificationId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -70,7 +70,7 @@ function NotificationsPage() {
   const handleMarkAsRead = async (notificationId) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/notifications/${notificationId}/read`,
+        `${import.meta.env.VITE_API_URL}/notifications/${notificationId}/read`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

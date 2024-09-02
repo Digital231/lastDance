@@ -15,7 +15,7 @@ function Conversations() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/conversations",
+        `${import.meta.env.VITE_API_URL}/conversations`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -37,7 +37,7 @@ function Conversations() {
   const handleDeleteConversation = async (conversationId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/conversations/${conversationId}`,
+        `${import.meta.env.VITE_API_URL}/conversations/${conversationId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

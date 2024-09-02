@@ -27,7 +27,7 @@ const ChatRoom = () => {
           headers: { Authorization: `Bearer ${token}` },
         };
         const response = await axios.get(
-          "http://localhost:5000/api/chat/chatRoom",
+          `${import.meta.env.VITE_API_URL}/chat/chatRoom`,
           config
         );
         setMessages(response.data);
@@ -82,7 +82,7 @@ const ChatRoom = () => {
   const handleLike = async (messageId) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/chat/${messageId}/like`,
+        `${import.meta.env.VITE_API_URL}/chat/${messageId}/like`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -158,8 +158,8 @@ const ChatRoom = () => {
                       <div
                         className={`absolute ${
                           msg.sender._id === user.id
-                            ? "-left-2 -bottom-2"
-                            : "-right-2 -bottom-2"
+                            ? "-left-5 -bottom-2"
+                            : "-right-5 -bottom-2"
                         } bg-base-100 rounded-full p-1 shadow-md`}
                       >
                         <button

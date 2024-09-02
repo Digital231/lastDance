@@ -8,10 +8,13 @@ const useSocket = () => {
   const [currentRoom, setCurrentRoom] = useState(null);
   const [globalUpdateTrigger, setGlobalUpdateTrigger] = useState(0);
 
+  const localHost = "http://localhost:5000";
+  const prodHost = "https://lastdance.onrender.com";
+
   useEffect(() => {
     let newSocket;
     if (token && user) {
-      newSocket = io("http://localhost:5000", {
+      newSocket = io(prodHost, {
         query: { token },
       });
       setSocket(newSocket);

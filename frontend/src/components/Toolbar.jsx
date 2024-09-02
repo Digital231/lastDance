@@ -31,7 +31,7 @@ const Toolbar = () => {
   const checkForNewNotifications = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/notifications",
+        `${import.meta.env.VITE_API_URL}/notifications`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -47,7 +47,7 @@ const Profile = () => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/update",
+        `${import.meta.env.VITE_API_URL}/users/update`,
         dataToUpdate,
         {
           headers: {

@@ -6,10 +6,13 @@ const Conversation = require("./models/Conversation");
 const Notification = require("./models/Notification");
 const ChatMessage = require("./models/ChatMessage");
 
+const localHost = "http://localhost:5173";
+const productionHost = "https://lastdance.onrender.com";
+
 function setupSocket(server) {
   const io = socketIo(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: productionHost,
       methods: ["GET", "POST"],
     },
   });

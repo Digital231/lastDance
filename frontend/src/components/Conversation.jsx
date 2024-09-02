@@ -23,7 +23,7 @@ function Conversation() {
   const fetchConversation = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/conversations/${conversationId}`,
+        `${import.meta.env.VITE_API_URL}/conversations/${conversationId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -68,9 +68,12 @@ function Conversation() {
 
   const fetchAllUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setAllUsers(response.data);
     } catch (error) {
       console.error("Error fetching all users:", error);
@@ -118,7 +121,9 @@ function Conversation() {
     if (newMessage.trim()) {
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/conversations/${conversationId}/messages`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/conversations/${conversationId}/messages`,
           { content: newMessage },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -147,7 +152,9 @@ function Conversation() {
   const addUserToConversation = async (userId) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/conversations/${conversationId}/participants`,
+        `${
+          import.meta.env.VITE_API_URL
+        }/conversations/${conversationId}/participants`,
         { userId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

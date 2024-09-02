@@ -17,9 +17,12 @@ function AllUsers() {
   const fetchUsers = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setUsers(response.data);
       setFilteredUsers(response.data);
       setError(null);
