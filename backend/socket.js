@@ -35,7 +35,7 @@ function setupSocket(server) {
   io.on("connection", (socket) => {
     const userId = socket.decoded.user.id;
     users[userId] = socket.id;
-    console.log("Connected to socket");
+    // console.log("Connected to socket");
 
     socket.on("joinRoom", (room) => {
       socket.join(room);
