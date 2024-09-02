@@ -188,17 +188,13 @@ function Conversation() {
           <div>
             <button
               className="btn btn-primary mr-2"
-              onClick={() => {
-                setShowParticipants(true);
-              }}
+              onClick={() => setShowParticipants(true)}
             >
               Show Participants
             </button>
             <button
               className="btn btn-secondary"
-              onClick={() => {
-                setShowAddUsers(true);
-              }}
+              onClick={() => setShowAddUsers(true)}
             >
               Add Users
             </button>
@@ -241,20 +237,17 @@ function Conversation() {
                     isCurrentUser ? "items-start" : "items-end"
                   }`}
                 >
-                  <span className="font-bold text-sm mb-1">
+                  <span className="font-bold text-sm mb-1 text-gray-900 dark:text-white">
                     {message.sender.username}
                   </span>
                   <div
-                    className={`chat-bubble p-3 rounded-lg break-words ${
-                      isCurrentUser
-                        ? "bg-blue-100 rounded-tl-none"
-                        : "bg-gray-100 rounded-tr-none"
+                    className={`chat-bubble p-3 rounded-lg break-words bg-blue-100 dark:bg-gray-700 dark:text-white ${
+                      isCurrentUser ? "rounded-tl-none" : "rounded-tr-none"
                     }`}
                   >
                     {message.content}
                   </div>
-
-                  <span className="text-xs text-gray-500 mt-1">
+                  <span className="text-xs text-gray-500 dark:text-gray-300 mt-1">
                     {formattedDate}
                   </span>
                 </div>
@@ -271,7 +264,7 @@ function Conversation() {
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            className="input input-bordered flex-grow"
+            className="input input-bordered flex-grow placeholder-gray-500 dark:placeholder-gray-400 dark:bg-gray-800 dark:text-white"
             placeholder="Type a message..."
             onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           />
