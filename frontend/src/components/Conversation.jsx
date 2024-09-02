@@ -179,8 +179,8 @@ function Conversation() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-black">
-      <div className="bg-black p-4 shadow-md">
+    <div className="flex flex-col h-[93vh] bg-base-200">
+      <div className="bg-base-200 p-4 shadow-md">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold text-white">Conversation</h1>
 

@@ -110,13 +110,13 @@ const ChatRoom = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-[93vh] bg-black">
+    <div className="flex flex-col h-[93vh] bg-base-200">
       <div className="flex-grow overflow-hidden">
         <div className="container mx-auto px-4 py-8 h-full flex flex-col">
           <h1 className="text-3xl font-bold text-center mb-6 text-white">
             Chat Room
           </h1>
-          <div className="bg-black rounded-lg shadow-xl flex-grow flex flex-col overflow-hidden">
+          <div className="bg-base-200 rounded-lg shadow-xl flex-grow flex flex-col overflow-hidden">
             <div
               className="flex-grow overflow-y-auto p-4"
               ref={chatContainerRef}
