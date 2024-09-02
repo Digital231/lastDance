@@ -181,7 +181,10 @@ function Conversation() {
     <div className="flex flex-col h-screen bg-base-200">
       <div className="bg-base-100 p-4 shadow-md">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Conversation</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            Conversation
+          </h1>
+
           <div>
             <button
               className="btn btn-primary mr-2"
@@ -242,7 +245,7 @@ function Conversation() {
                     {message.sender.username}
                   </span>
                   <div
-                    className={`chat-bubble p-3 rounded-lg ${
+                    className={`chat-bubble p-3 rounded-lg break-words ${
                       isCurrentUser
                         ? "bg-blue-100 rounded-tl-none"
                         : "bg-gray-100 rounded-tr-none"
@@ -250,6 +253,7 @@ function Conversation() {
                   >
                     {message.content}
                   </div>
+
                   <span className="text-xs text-gray-500 mt-1">
                     {formattedDate}
                   </span>

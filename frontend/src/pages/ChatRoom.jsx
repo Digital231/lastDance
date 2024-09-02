@@ -46,13 +46,11 @@ const ChatRoom = () => {
 
   useEffect(() => {
     if (socket) {
-      // Listen for new messages
       socket.on("receiveMessage", (newMessage) => {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         scrollToBottom();
       });
 
-      // Listen for message likes
       socket.on("messageLiked", ({ messageId, likes }) => {
         setMessages((prevMessages) =>
           prevMessages.map((msg) =>
@@ -62,7 +60,6 @@ const ChatRoom = () => {
       });
     }
 
-    // Clean up the event listeners on component unmount
     return () => {
       if (socket) {
         socket.off("receiveMessage");
@@ -89,13 +86,11 @@ const ChatRoom = () => {
         }
       );
 
-      // Emit a socket event after the like is saved in the database
       socket.emit("messageLiked", {
         messageId: messageId,
         likes: response.data.likes,
       });
 
-      // Optionally update the local state immediately for optimistic UI
       setMessages((prevMessages) =>
         prevMessages.map((msg) =>
           msg._id === messageId ? { ...msg, likes: response.data.likes } : msg
@@ -153,7 +148,7 @@ const ChatRoom = () => {
                         {new Date(msg.createdAt).toLocaleString()}
                       </time>
                     </div>
-                    <div className="chat-bubble relative">
+                    <div className="chat-bubble relative break-words">
                       {msg.content}
                       <div
                         className={`absolute ${
@@ -175,6 +170,7 @@ const ChatRoom = () => {
                         </button>
                       </div>
                     </div>
+
                     <div className="chat-footer mt-1">
                       <span
                         className={`badge ${
