@@ -181,9 +181,7 @@ function Conversation() {
     <div className="flex flex-col h-screen bg-base-200">
       <div className="bg-base-100 p-4 shadow-md">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Conversation
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900">Conversation</h1>
 
           <div>
             <button
@@ -237,17 +235,17 @@ function Conversation() {
                     isCurrentUser ? "items-start" : "items-end"
                   }`}
                 >
-                  <span className="font-bold text-sm mb-1 text-gray-900 dark:text-white">
+                  <span className="font-bold text-sm mb-1 text-gray-900">
                     {message.sender.username}
                   </span>
                   <div
-                    className={`chat-bubble p-3 rounded-lg break-words bg-blue-100 dark:bg-gray-700 dark:text-white ${
+                    className={`chat-bubble p-3 rounded-lg break-all bg-base-100 ${
                       isCurrentUser ? "rounded-tl-none" : "rounded-tr-none"
                     }`}
                   >
                     {message.content}
                   </div>
-                  <span className="text-xs text-gray-500 dark:text-gray-300 mt-1">
+                  <span className="text-xs text-gray-500 mt-1">
                     {formattedDate}
                   </span>
                 </div>
@@ -264,7 +262,7 @@ function Conversation() {
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            className="input input-bordered flex-grow placeholder-gray-500 dark:placeholder-gray-400 dark:bg-gray-800 dark:text-white"
+            className="input input-bordered flex-grow placeholder-gray-500"
             placeholder="Type a message..."
             onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           />
