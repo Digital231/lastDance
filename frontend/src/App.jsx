@@ -10,27 +10,77 @@ import Home from "./pages/Home";
 import Notifications from "./pages/Notifications";
 import UserDetails from "./components/UserDetails";
 import Conversation from "./components/Conversation";
+import PrivateRoute from "./components/PrivateRoute";
+import AuthWrapper from "./components/AuthWrapper";
 
 function App() {
   return (
-    <Router>
-      <Toolbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/users" element={<AllUsers />} />
-        <Route path="/chatroom" element={<ChatRoom />} />
-        <Route path="/conversations" element={<Conversations />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/users/:userId" element={<UserDetails />} />
-        <Route
-          path="/conversations/:conversationId"
-          element={<Conversation />}
-        />
-      </Routes>
-    </Router>
+    <AuthWrapper>
+      <Router>
+        <Toolbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <PrivateRoute>
+                <AllUsers />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/chatroom"
+            element={
+              <PrivateRoute>
+                <ChatRoom />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/conversations"
+            element={
+              <PrivateRoute>
+                <Conversations />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <PrivateRoute>
+                <Notifications />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/users/:userId"
+            element={
+              <PrivateRoute>
+                <UserDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/conversations/:conversationId"
+            element={
+              <PrivateRoute>
+                <Conversation />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthWrapper>
   );
 }
 

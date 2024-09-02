@@ -130,7 +130,7 @@ const ChatRoom = () => {
                   <div
                     key={msg._id}
                     className={`chat ${
-                      msg.sender._id === user.id ? "chat-end" : "chat-start"
+                      msg.sender._id === user.id ? "chat-start" : "chat-end"
                     } mb-4`}
                   >
                     <div className="chat-image avatar">

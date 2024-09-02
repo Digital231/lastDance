@@ -249,12 +249,12 @@ function Conversation() {
             <div
               key={message._id}
               className={`flex ${
-                isCurrentUser ? "justify-end" : "justify-start"
-              } ms-15`} // <-- Added padding here to add a gap on the sides
+                isCurrentUser ? "justify-start" : "justify-end"
+              } ms-15`}
             >
               <div
                 className={`flex items-start max-w-full ${
-                  isCurrentUser ? "flex-row-reverse" : "flex-row"
+                  isCurrentUser ? "flex-row" : "flex-row-reverse"
                 }`}
               >
                 <img
@@ -264,11 +264,14 @@ function Conversation() {
                 />
                 <div
                   className={`flex flex-col ${
-                    isCurrentUser ? "items-end" : "items-start"
+                    isCurrentUser ? "items-start" : "items-end"
                   } ml-3 mr-3`}
                 >
                   <span className="font-bold text-sm mb-1 text-white">
                     {message.sender.username}
+                  </span>
+                  <span className="text-xs text-gray-500 mb-2">
+                    {formattedDate}
                   </span>
                   <div
                     className={`chat-bubble p-3 rounded-lg break-words bg-white text-black max-w-[calc(100vw-6rem)] ${
@@ -277,9 +280,6 @@ function Conversation() {
                   >
                     {message.content}
                   </div>
-                  <span className="text-xs text-gray-500 mt-1">
-                    {formattedDate}
-                  </span>
                 </div>
               </div>
             </div>

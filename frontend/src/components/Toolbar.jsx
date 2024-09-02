@@ -16,7 +16,7 @@ const Toolbar = () => {
   const location = useLocation();
   const { globalUpdateTrigger } = useSocket();
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for the hamburger menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn && token) {
@@ -46,11 +46,11 @@ const Toolbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/login");
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); // Toggle menu open/close state
+    setIsMenuOpen((prev) => !prev);
   };
 
   const NavItems = ({ className = "" }) => (
@@ -98,39 +98,41 @@ const Toolbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-lg">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label
-            tabIndex={0}
-            className="btn btn-ghost lg:hidden relative z-20"
-            onClick={toggleMenu} // Add onClick to toggle the menu
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <div className="sticky top-0 z-50">
+      <div className="navbar bg-base-100 shadow-lg">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost lg:hidden relative z-20"
+              onClick={toggleMenu}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          {isMenuOpen && ( // Conditionally render the dropdown menu
-            <NavItems className="dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-30 relative" />
-          )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+            {isMenuOpen && (
+              <NavItems className="dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-30 relative" />
+            )}
+          </div>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            BoringApp
+          </Link>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          BoringApp
-        </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <NavItems className="menu-horizontal px-1" />
+        <div className="navbar-center hidden lg:flex">
+          <NavItems className="menu-horizontal px-1" />
+        </div>
       </div>
     </div>
   );
