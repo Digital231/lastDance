@@ -6,6 +6,16 @@ import Loader from "../components/Loader";
 function Home() {
   const [quote, setQuote] = useState({ text: "", author: "" });
   const [isLoading, setIsLoading] = useState(true);
+  const backUpQuotes = [
+    {
+      text: "The only way to do great work is to love what you do.",
+      author: "Steve Jobs",
+    },
+    {
+      text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+      author: "Winston Churchill",
+    },
+  ];
 
   useEffect(() => {
     fetchQuote();
@@ -18,7 +28,7 @@ function Home() {
       setQuote({ text: response.data.content, author: response.data.author });
     } catch (error) {
       console.error("Error fetching quote:", error);
-      setQuote({ text: "Failed to fetch quote", author: "Unknown" });
+      setQuote(backUpQuotes[Math.floor(Math.random() * backUpQuotes.length)]);
     } finally {
       setIsLoading(false);
     }
